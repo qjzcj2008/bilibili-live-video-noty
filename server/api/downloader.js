@@ -3,7 +3,7 @@
  * Created by allen on 2016/6/20.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var http = require("http");
+var https = require("https");
 /**
  * LOCATION_CHANGE_STATUS
  * 302重定向
@@ -39,7 +39,7 @@ function locationDownloadUrl(url, resolve, loopCounter) {
     if (loopCounter === MAX_302_LOOP_TIME) {
         throw new Error('downloader.ts: potential infinite loop for seeking download url address');
     }
-    http.get(url, function (response) {
+    https.get(url, function (response) {
         if (response.statusCode === LOCATION_CHANGE_STATUS) {
             locationDownloadUrl(response.headers.location, resolve, loopCounter++);
         }
